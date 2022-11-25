@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style type="text/css">
+		body{
+			background-image: url(https://products.ls.graphics/mesh-gradients/images/51.-Spindle_1.jpg);
+			background-repeat: no-repeat;
+			background-size: 100%;
+		}
+	</style>
+</head>
+<body>
+	<input id="username" type="text" placeholder="username"/>
+	<input id="password" placeholder="enter your password">
+	<button onclick="display()">submit</button>
+	<script type="text/javascript">
+		function display(){
+			var username=document.getElementById("username").value
+			console.log(username)
+			var password=document.getElementById("password").value
+			console.log(password)
+		fetch("http://localhost:2500/newData",{
+			method:"POST",
+			headers:{
+				"Content-Type":"application/json"
+			},
+			body:JSON.stringify({name:username,passwd:password})
+		})
+		.then((res)=>{
+			console.log(res)
+			if(res.status===200)
+				alert("Registration successful")
+		})
+		.catch((err)=>{
+			alert(err)
+		})
+	}
+	</script>
+
+</body>
+</html>
